@@ -2,6 +2,10 @@ Meteor.publish("users-all", function(){
 	return Meteor.users.find();
 });
 
+Meteor.publish("requests-all", function () {
+  return RequestsCollection.find();
+});
+
 Meteor.publish("invites-all", function () {
   return InvitesCollection.find();
 });

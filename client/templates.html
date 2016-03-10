@@ -1,19 +1,44 @@
 <!-- Invites Admin -->
 
 <template name="inviteAdmin">
-	<h2>Request a Beta Invite</h2>
+    <h1>Invitation Requests</h1>
+	<h2>Request an Invitation</h2>
 	<form class="inviteRequest">
         <input id="requestInviteEmail" type="text" name="email" placeholder="Email address" />
         <input type="submit" value="Request">
     </form>
 
-	<h2>Create a Beta Invite</h2>
+    <table class="invites-table">
+        <thead>
+            <tr>
+                <th>Created At</th>
+                <th>Status</th>
+                <th>Email</th>
+                <th>Delete</th>
+                <th>Invite</th>
+            </tr>
+        </thead>
+
+        {{#each requests}}
+        <tr>
+            <td>{{datetime}}</td>
+            <td>{{status}}</td>
+            <td>{{email}}</td>
+            <td><a class="request-delete" data-id="{{_id}}" href="#">Delete</a></td>
+            {{#if allowInvite}}
+                <td><a class="request-invite" data-id="{{_id}}" href="#">Invite</a></td>
+            {{/if}}
+        </tr>
+        {{/each}}
+    </table>
+
+    <h1>Invitations</h1>
+	<h2>Create an Invitation</h2>
 	<form class="inviteCreate">
         <input id="inviteEmail" type="text" name="email" placeholder="Email address" />
         <input type="submit" value="Invite">
     </form>
 
-    <h2>Invites</h2>
     <table class="invites-table">
         <thead>
             <tr>
@@ -40,8 +65,8 @@
     	{{/each}}
     </table>
 
-    <h2>Users</h2>
-    <table class="invites-users-table">
+    <h1>Users</h1>
+    <table class="invites-table">
         <thead>
             <tr>
             	<th>Created At</th>

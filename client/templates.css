@@ -1,15 +1,13 @@
 table.invites-table td {
 	padding: 5px 15px;
+	/*width:10em;*/
+}
+
+table.invites-table th {
+	padding: 2px 15px;
+	/*width:10em;*/
 }
 
 table.invites-table thead {
-	background-color: #DDD;
-}
-
-table.invites-users-table td {
-	padding: 5px 15px;
-}
-
-table.invites-users-table thead {
 	background-color: #DDD;
 }

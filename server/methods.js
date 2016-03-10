@@ -1,12 +1,22 @@
 Meteor.methods({
-    'invitesCreate': function(inviteEmail){
-        Invites.createInvitation(inviteEmail);
+    'invitesCreate': function(inviteEmail, sendEmail){
+        Invites.createInvitation(inviteEmail, sendEmail);
     },
-    'invitesRequest': function(inviteEmail){
-        Invites.createInviteRequest(inviteEmail);
+    'invitesRequest': function(inviteEmail, sendEmail){
+        // Creates an invitation request
+        Invites.createInviteRequest(inviteEmail, sendEmail);
+    },
+    'createInviteFromRequest': function(id){
+        // Creates an invitation for an existing Request
+        RequestsCollection.update({"_id":id}, {$set: {"status":"invited"}});
+        var inviteEmail = RequestsCollection.findOne(id).email;
+        Invites.createInvitation(inviteEmail, true);
     },
     'invitesVisited':function(token){
     	InvitesCollection.update({"token":token}, {$set: {"status":"visited"}});
+    },
+    'requestsDelete':function(id){
+        RequestsCollection.remove({"_id":id});
     },
     'invitesDelete':function(id){
     	InvitesCollection.remove({"_id":id});

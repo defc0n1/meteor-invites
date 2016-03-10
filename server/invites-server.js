@@ -1,18 +1,18 @@
-Invites.createInviteRequest = function(requestEmail){
+Invites.createInviteRequest = function(requestEmail, sendEmail){
+  console.log("createInviteRequest: "+requestEmail+" / "+sendEmail);
   // For beta signup requests
-  var m = InvitesCollection.insert({
-    "token": "",
-    "status": "requested", // requested, invited, visited (reached accept page but didn't claim), claimed
+  var m = RequestsCollection.insert({
     "email": requestEmail,
-    "createdAt": new Date(),
-    "userId": ""   // associated with actual user account when registered
+    "status": "requested",
+    "createdAt": new Date()
   });
 
   // Send invite request confirmation
-
+  if(sendEmail)
+    Invites.sendInviteRequestConfirmation(requestEmail);
 }
 
-Invites.createInvitation = function(inviteEmail){
+Invites.createInvitation = function(inviteEmail, sendEmail){
   // generate invite hash
   // insert beta invite record
   var token = Random.id(8);
@@ -25,7 +25,21 @@ Invites.createInvitation = function(inviteEmail){
   });
 
   // send Invite email
-  AccountsInvite.sendInviteEmail(token, inviteEmail);
+  if(sendEmail)
+    Invites.sendInviteEmail(token, inviteEmail);
+}
+
+Invites.sendInviteRequestConfirmation = function(requestEmail){
+  var body = "Thanks for your interest in our app! We'll let you know when you've been invited.";
+  var options = {
+      from: "My App <hi@app.io>",
+      to: requestEmail,
+      subject: 'Thanks for requesting an invitation to MyApp!',
+      text: body,
+      // headers: "Content-Type: text/html; charset=ISO-8859-1\r\n"
+  };
+
+  Email.send(options);
 }
 
 Invites.sendInviteEmail = function(token, inviteEmail){
