@@ -45,7 +45,7 @@ Template.inviteAdmin.events = {
   'submit form.inviteRequest': function (event, template) {
     event.preventDefault();
     var inviteEmail = template.find('#requestInviteEmail').value;
-    Meteor.call('invitesRequest', inviteEmail, false);
+    Meteor.call('invitesRequest', inviteEmail, true);
   },
   'submit form.inviteCreate': function (event, template) {
     event.preventDefault();

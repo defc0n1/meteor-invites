@@ -1,6 +1,6 @@
 Package.describe({
   name: 't3db0t:invites',
-  version: '0.0.2',
+  version: '1.0.0',
   summary: 'An invitation management system',
   git: '',
   documentation: 'README.md'
@@ -36,6 +36,6 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
-  api.use('t3db0t:meteor-invites');
+  api.use('t3db0t:invites');
   api.addFiles('meteor-invites-tests.js');
 });
