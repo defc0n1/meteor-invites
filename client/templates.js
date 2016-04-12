@@ -24,10 +24,20 @@ Template.inviteAdmin.helpers({
   "allowInvite":function(){
     return this.status == "requested";
   },
+  // "name":function(){
+  //   return 
+  // },
   "inviteToken":function(){
     var t = "";
     if(this.services && this.services.accountsInvite){
-      t = this.services.accountsInvite.token;
+      t = this.services.accountsInvite.inviteToken;
+    }
+    return t;
+  },
+  "inviteType":function(){
+    var t = "";
+    if(this.services && this.services.accountsInvite){
+      t = this.services.accountsInvite.inviteType;
     }
     return t;
   },

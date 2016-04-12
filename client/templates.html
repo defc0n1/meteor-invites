@@ -73,7 +73,8 @@
             <tr>
             	<th>Created At</th>
                 <th>ID</th>
-                <th>Accounts-Invite Token</th>
+                <th>profile.name</th>
+                <th>Token</th>
                 <th>Services</th>
                 <th>Delete</th>
             </tr>
@@ -83,7 +84,8 @@
         <tr>
         	<td>{{datetime}}</td>
             <td>{{_id}}</td>
-            <td>{{inviteToken}}</td>
+            <td>{{profile.name}}</td>
+            <td>{{inviteToken}} ({{inviteType}})</td>
             <td>{{services}}</td>
             <td><a class="user-delete" data-id="{{_id}}" href="#">Delete</a></td>
         </tr>
