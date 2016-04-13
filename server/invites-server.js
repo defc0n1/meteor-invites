@@ -16,6 +16,16 @@ Invites.config = function(configObject){
   Invites.configData = configObject;
 }
 
+Invites.configEmailHandlers = function(emailHandlers){
+  check(emailHandlers, Object);
+  console.log("-----------------");
+  console.log(emailHandlers);
+  console.log("-----------------");
+  Invites.emailHandlers = emailHandlers;
+  console.log(Invites.emailHandlers);
+  console.log("-----------------");
+}
+
 Invites.createInviteRequest = function(requestEmail, sendEmail){
   // For beta signup requests
   
@@ -33,7 +43,8 @@ Invites.createInviteRequest = function(requestEmail, sendEmail){
 
   // Send invite request confirmation
   if(sendEmail)
-    Invites.sendInviteRequestConfirmation(requestEmail);
+    // Invites.sendInviteRequestConfirmation(requestEmail);
+    Invites.emailHandlers['inviteRequestHandler'](requestEmail);
 }
 
 Invites.createInvitation = function(inviteEmail, sendEmail){
@@ -48,9 +59,11 @@ Invites.createInvitation = function(inviteEmail, sendEmail){
     "userId": ""   // associated with actual user account when registered
   });
 
+  console.log(Invites.emailHandlers);
   // send Invite email
   if(sendEmail)
-    Invites.sendInviteEmail(token, inviteEmail);
+    // Invites.sendInviteEmail(token, inviteEmail);
+    Invites.emailHandlers['inviteHandler'](token, inviteEmail);
 }
 
 Invites.sendInviteRequestConfirmation = function(requestEmail){
@@ -79,3 +92,8 @@ Invites.sendInviteEmail = function(token, inviteEmail){
 
   Email.send(options);
 }
+
+Invites.emailHandlers = {
+  inviteRequestHandler: Invites.sendInviteRequestConfirmation,
+  inviteHandler: Invites.sendInviteEmail
+};
