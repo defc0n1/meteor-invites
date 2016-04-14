@@ -18,12 +18,8 @@ Invites.config = function(configObject){
 
 Invites.configEmailHandlers = function(emailHandlers){
   check(emailHandlers, Object);
-  console.log("-----------------");
-  console.log(emailHandlers);
-  console.log("-----------------");
+  
   Invites.emailHandlers = emailHandlers;
-  console.log(Invites.emailHandlers);
-  console.log("-----------------");
 }
 
 Invites.createInviteRequest = function(requestEmail, sendEmail){
