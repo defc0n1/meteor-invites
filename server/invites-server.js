@@ -14,13 +14,13 @@ Invites.config = function(configObject){
   check(configObject, Object);
   
   Invites.configData = configObject;
-}
+};
 
 Invites.configEmailHandlers = function(emailHandlers){
   check(emailHandlers, Object);
   
   Invites.emailHandlers = emailHandlers;
-}
+};
 
 Invites.createInviteRequest = function(requestEmail, sendEmail){
   // For beta signup requests
@@ -41,7 +41,7 @@ Invites.createInviteRequest = function(requestEmail, sendEmail){
   if(sendEmail)
     // Invites.sendInviteRequestConfirmation(requestEmail);
     Invites.emailHandlers['inviteRequestHandler'](requestEmail);
-}
+};
 
 Invites.createInvitation = function(inviteEmail, sendEmail){
   // generate invite hash
@@ -60,7 +60,7 @@ Invites.createInvitation = function(inviteEmail, sendEmail){
   if(sendEmail)
     // Invites.sendInviteEmail(token, inviteEmail);
     Invites.emailHandlers['inviteHandler'](token, inviteEmail);
-}
+};
 
 Invites.sendInviteRequestConfirmation = function(requestEmail){
   var body = Invites.configData.inviteRequest.body;
@@ -73,7 +73,7 @@ Invites.sendInviteRequestConfirmation = function(requestEmail){
   };
 
   Email.send(options);
-}
+};
 
 Invites.sendInviteEmail = function(token, inviteEmail){
   var host = Meteor.absoluteUrl();
@@ -87,7 +87,7 @@ Invites.sendInviteEmail = function(token, inviteEmail){
   };
 
   Email.send(options);
-}
+};
 
 Invites.emailHandlers = {
   inviteRequestHandler: Invites.sendInviteRequestConfirmation,
