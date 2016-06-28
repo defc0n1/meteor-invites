@@ -1,6 +1,6 @@
 Package.describe({
   name: 't3db0t:invites',
-  version: '1.0.2',
+  version: '1.1.0',
   summary: 'An invitation management system',
   git: '',
   documentation: 'README.md'
@@ -30,7 +30,7 @@ Package.onUse(function(api) {
     'server/publications.js'
   ], 'server');
 
-  api.export(['Invites', 'InvitesCollection']);
+  api.export(['Invites', 'InvitesCollection', 'RequestsCollection']);
 });
 
 Package.onTest(function(api) {

@@ -6,6 +6,11 @@ Meteor.publish("requests-all", function () {
   return RequestsCollection.find();
 });
 
+Meteor.publish("requests-email", function (email) {
+  check(email, String);
+  return RequestsCollection.find({'email':email});
+});
+
 Meteor.publish("invites-all", function () {
   return InvitesCollection.find();
 });
