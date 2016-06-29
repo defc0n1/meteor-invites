@@ -7,7 +7,8 @@ An invitation management system for Meteor.
 - Built-in `invitesAdmin` template for quick and easy management of:
 -- **Invite Requests:** So users can 'apply' for invitations via your own forms
 -- **Invitations:** Which you can create from scratch or from the above requests.
-- Emails for request confirmation and/or invitation creation
+- Built-in simple emails for request confirmation and/or invitation creation -OR-
+- Custom email handlers, i.e. use your own email templator, etc.
 
 ## Usage
 
@@ -37,6 +38,38 @@ Router.route('/invites', {
 	    }
   	},
     template: 'inviteAdmin'
+});
+```
+- Optional: There's a `requests-email` publication you can subscribe to with an email address and it will give you the request status for that email, i.e. if you want to check if someone's already requested an invite. Example:
+```js
+Meteor.subscribe('requests-email', 'test@test.com');
+```
+- Custom email handlers: for example, using `PrettyEmail`:
+```js
+Invites.configEmailHandlers({
+  inviteRequestHandler: function(requestEmail){
+
+    PrettyEmail.send('call-to-action', {
+      to: requestEmail,
+      subject: 'Thanks for requesting an invitation to MyApp',
+      heading: '',
+      message: "Thanks for your interest in MyApp! Just click below to verify your email address and we'll let you know when you've been invited.",
+      buttonText: 'Confirm',
+      // buttonUrl: '', // Coming soon
+    });
+  },
+  inviteHandler: function(token, inviteEmail){
+    var host = Meteor.absoluteUrl();
+
+    PrettyEmail.send('call-to-action', {
+      to: inviteEmail,
+      subject: 'Welcome to MyApp',
+      heading: "You've been invited to MyApp",
+      message: "Click below to accept and get started.",
+      buttonText: "Let's Go",
+      buttonUrl: host+'acceptInvite/'+token,
+    });
+  }
 });
 ```
 

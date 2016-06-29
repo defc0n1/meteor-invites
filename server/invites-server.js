@@ -31,17 +31,25 @@ Invites.createInviteRequest = function(requestEmail, sendEmail){
     return;
   }
 
+  var token = Random.id(8);
   var m = RequestsCollection.insert({
     "email": requestEmail,
     "status": "requested",
-    "createdAt": new Date()
+    "createdAt": new Date(),
+    "token":token
   });
 
   // Send invite request confirmation
   if(sendEmail)
     // Invites.sendInviteRequestConfirmation(requestEmail);
-    Invites.emailHandlers['inviteRequestHandler'](requestEmail);
+    Invites.emailHandlers['inviteRequestHandler'](requestEmail, token);
 };
+
+Invites.confirmInviteRequest = function(token){
+  if(RequestsCollection.findOne({"token":token})){
+    RequestsCollection.update({"token":token},{"status":"confirmed"});
+  }
+}
 
 Invites.createInvitation = function(inviteEmail, sendEmail){
   // generate invite hash

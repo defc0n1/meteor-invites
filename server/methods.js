@@ -6,6 +6,9 @@ Meteor.methods({
         // Creates an invitation request
         Invites.createInviteRequest(inviteEmail, sendEmail);
     },
+    'confirmInviteRequest': function(token){
+        Invites.confirmInviteRequest(token);
+    },
     'createInviteFromRequest': function(id){
         // Creates an invitation for an existing Request
         RequestsCollection.update({"_id":id}, {$set: {"status":"invited"}});
