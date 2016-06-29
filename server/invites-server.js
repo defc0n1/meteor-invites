@@ -47,7 +47,7 @@ Invites.createInviteRequest = function(requestEmail, sendEmail){
 
 Invites.confirmInviteRequest = function(token){
   if(RequestsCollection.findOne({"token":token})){
-    RequestsCollection.update({"token":token},{"status":"confirmed"});
+    RequestsCollection.update({"token":token},{$set:{"status":"confirmed"}});
   }
 }
 
