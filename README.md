@@ -12,8 +12,10 @@ An invitation management system for Meteor.
 
 ## Usage
 
-- `meteor add t3db0t:invites`
-- ```js
+### Config
+`meteor add t3db0t:invites`
+
+```js
 Invites.config({
 	from: "MyApp <notifications@myapp.io>",
 	inviteRequest: {
@@ -24,8 +26,12 @@ Invites.config({
     	subject: "Welcome to MyApp Beta",
     	body: "You've been invited to MyApp!"
   	}
-});```
-- Set up a route to the included `inviteAdmin` template, for example (Iron Router):
+});
+```
+
+### Routes
+`meteor-invites` is router-agnostic, so you'll need to implement your own routes.  However, it does include some templates:
+- The included `inviteAdmin` template, for example (Iron Router):
 `Router.route('/invites', 'inviteAdmin');`
 -- You can use your router to secure this route, for example (Iron Router):
 ```js
@@ -40,12 +46,18 @@ Router.route('/invites', {
     template: 'inviteAdmin'
 });
 ```
--- There's also an included "Invite Request Confirmation" template at `confirmInviteRequest`
-- Optional: There's a `requests-email` publication you can subscribe to with an email address and it will give you the request status for that email, i.e. if you want to check if someone's already requested an invite. Example:
+- There's also an included "Invite Request Confirmation" template at `confirmInviteRequest`
+
+### Publications
+
+Optional: There's a `requests-email` publication you can subscribe to with an email address and it will give you the request status for that email, i.e. if you want to check if someone's already requested an invite. Example:
 ```js
 Meteor.subscribe('requests-email', 'test@test.com');
 ```
-- Custom email handlers: for example, using `PrettyEmail`:
+
+### Custom Email Handlers
+
+For example, using `PrettyEmail`:
 ```js
 Invites.configEmailHandlers({
   inviteRequestHandler: function(requestEmail){
@@ -74,4 +86,4 @@ Invites.configEmailHandlers({
 });
 ```
 
-Pull requests welcome!
+### Pull requests welcome!
