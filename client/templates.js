@@ -22,7 +22,7 @@ Template.inviteAdmin.helpers({
     return Meteor.users.find();
   },
   "allowInvite":function(){
-    return this.status == "requested";
+    return this.status == "requested" || this.status == "confirmed";
   },
   // "name":function(){
   //   return 
