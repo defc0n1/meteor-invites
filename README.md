@@ -39,6 +39,7 @@ Router.route('/invites', {
   	},
     template: 'inviteAdmin'
 });
+-- There's also an included "Invite Request Confirmation" template at `confirmInviteRequest`
 ```
 - Optional: There's a `requests-email` publication you can subscribe to with an email address and it will give you the request status for that email, i.e. if you want to check if someone's already requested an invite. Example:
 ```js
