@@ -33,7 +33,7 @@
             <td>{{datetime}}</td>
             <td>{{status}}</td>
             <td>{{email}}</td>
-            <td>{{token}}</td>
+            <td><a href="/confirmInviteRequest/{{token}}">{{token}}</a></td>
             <td><a class="request-delete" data-id="{{_id}}" href="#">Delete</a></td>
             {{#if allowInvite}}
                 <td><a class="request-invite" data-id="{{_id}}" href="#">Invite</a></td>
