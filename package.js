@@ -1,6 +1,6 @@
 Package.describe({
   name: 't3db0t:invites',
-  version: '1.1.1',
+  version: '1.1.2',
   summary: 'An invitation management system',
   git: '',
   documentation: 'README.md'
