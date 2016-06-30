@@ -32,5 +32,8 @@ Meteor.methods({
     },
     'deleteUser':function(id){
         Meteor.users.remove(id);
+    },
+    'getInvite':function(token){
+        return InvitesCollection.findOne({"token":token});
     }
 });
