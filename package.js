@@ -1,13 +1,13 @@
 Package.describe({
   name: 't3db0t:invites',
-  version: '1.1.4',
+  version: '1.1.5',
   summary: 'An invitation management system',
   git: '',
   documentation: 'README.md'
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.2.1');
+  api.versionsFrom('1.5.2.2');
   // api.use('ecmascript');
   api.use('check');
   api.use(['templating', 'blaze-html-templates'], 'client');
